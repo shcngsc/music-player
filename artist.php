@@ -14,7 +14,7 @@
     <div class="centerSection">
         <div class="artInfo">
             <h1 class="artName"> <?php echo $artistName ?> </h1>
-            <button id="ArtistplayButton" onclick="setTrack(tempPlaylist[0],tempPlaylist,true)">Play</button>
+            <button class="greenButton" onclick="setTrack(tempPlaylist[0],tempPlaylist,true)">Play</button>
         </div>
     </div>
 </div>

@@ -221,6 +221,7 @@ body {
     width:29%;
     max-width: 250px;
     min-width: 150px;
+    cursor: pointer;
 }
 
 .gridViewItem img {
@@ -314,6 +315,10 @@ body {
     width: 75%;
     float: left;
 }
+.trackListRow .trackInfo .trackArtist {
+    display:block;
+    color: grey;
+}
 .trackListRow .trackOptions {
     width: 5%;
     float: left;
@@ -335,14 +340,24 @@ body {
 .artInfo {
     text-align: center;
 }
-.artInfo button {
+.greenButton {
     background-color: #1ED760;
     border-radius: 30px;
     border-style: none;
-    width: 100px;
     height: 40px;
     color: white;
     letter-spacing: 3px;
+    padding:5px 10px;
+}
+
+.blackButton {
+    background-color: #282828;
+    border-radius: 30px;
+    border-style: none;
+    height: 40px;
+    color: white;
+    letter-spacing: 3px;
+    padding:5px 10px;
 }
 .artInfo .artName {
     font-size: 50px;
@@ -381,4 +396,73 @@ input:focus {
 }
 span:focus {
     outline: none;
+}
+
+.artistFoundGridContianer {
+    display: inline-flex;
+    text-align: center;
+    padding:15px 10px;
+}
+
+.artistFoundItem {
+    width: 20%;
+    min-width: 50px;
+    margin-right: 50px;
+    height: 150px;
+    line-height: 150px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    min-width: 150px;
+    max-width: 200px;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 200;
+}
+
+h2 {
+    text-align: center;
+    padding-top:20px;
+}
+
+.artistFoundItem:hover {
+    background-color: #282828;
+}
+.albumFoundContainer {
+    margin-top: 50px;
+}
+.buttonItems button {
+    margin: 0 auto 20px auto;
+    display: block;
+}
+
+.optionsMenu {
+    position:fixed;
+    background-color:#282828;
+    width:200px;
+    border:1px solid black;
+    border-radius: 3px;
+    z-index: 1000;
+    display: none;
+}
+
+.optionsMenu .item {
+    width: 100%;
+    padding:12px 20px;
+    box-sizing: border-box;
+    font-weight: 400;
+    color:#fff;
+}
+.optionsMenu .item:hover {
+    background-color: #333;
+}
+
+.playlist {
+    border:none;
+    -webkit-appearance: none;
+    width: 100%;
+    padding:12px 20px;
+    box-sizing: border-box;
+    font-weight: 400;
+    color:#fff;
+
 }
