@@ -17,7 +17,7 @@
          $userLoggedIn = new User($con,$_GET['userLoggedIn']);
      }
      else{
-         header("Location:index.php");
+         header("Location:register.php");
      }
  }
  else {

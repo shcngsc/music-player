@@ -241,6 +241,7 @@ body {
     padding: 40px 0 10px 0;
     display: inline-block;
     width:100%;
+    text-align: center;
 }
 
 .entityInfo .leftSection {
@@ -347,7 +348,7 @@ body {
     height: 40px;
     color: white;
     letter-spacing: 3px;
-    padding:5px 10px;
+    padding:5px 30px;
 }
 
 .blackButton {
@@ -358,6 +359,10 @@ body {
     color: white;
     letter-spacing: 3px;
     padding:5px 10px;
+    display: block;
+    margin: 50px 0;
+    width: 100%;
+    font-size: 20px;
 }
 .artInfo .artName {
     font-size: 50px;
@@ -405,9 +410,7 @@ span:focus {
 }
 
 .artistFoundItem {
-    width: 20%;
-    min-width: 50px;
-    margin-right: 50px;
+    margin:50px;
     height: 150px;
     line-height: 150px;
     border-radius: 50%;
@@ -417,6 +420,7 @@ span:focus {
     cursor: pointer;
     display: inline-block;
     font-weight: 200;
+    text-align: center;
 }
 
 h2 {
@@ -438,11 +442,18 @@ h2 {
 .optionsMenu {
     position:fixed;
     background-color:#282828;
-    width:200px;
+    width:150px;
     border:1px solid black;
     border-radius: 3px;
     z-index: 1000;
     display: none;
+    text-align: center;
+}
+
+.optionsMenu ul {
+    list-style: none;
+
+    padding: 10px 15px;
 }
 
 .optionsMenu .item {
@@ -450,7 +461,8 @@ h2 {
     padding:12px 20px;
     box-sizing: border-box;
     font-weight: 400;
-    color:#fff;
+    color: #808080;
+    overflow: hidden;
 }
 .optionsMenu .item:hover {
     background-color: #333;
@@ -464,5 +476,60 @@ h2 {
     box-sizing: border-box;
     font-weight: 400;
     color:#fff;
+}
 
+.updateItem {
+    width: 100%;
+    background-color: #282828;
+    border: 1px solid white;
+    border-radius: 10px;
+    height: 80px;
+    padding: 20px;
+    margin-top:30px;
+    font-size: 40px;
+    color: white;
+    text-align: center;
+}
+
+.updateContainer {
+    text-align: center;
+}
+
+.noResult {
+    padding: 10px;
+    font-size: 60px;
+    color: #808080;
+}
+.trackListContainer ul{
+    padding:10px;
+}
+#emailResponse {
+    text-align: center;
+    color: #808080;
+    border: 1px solid #808080;
+    padding: 5px;
+    display: none;
+}
+
+.modalItem:hover {
+    background-color: #808080;
+    cursor: pointer;
+}
+
+.controlButton img:hover {
+    cursor:pointer;
+}
+
+.trackList img:hover {
+    cursor: pointer;
+}
+
+.nowPlayingBar .albumLink img:hover {
+    cursor: pointer;
+}
+.trackInfo .singerName:hover {
+    cursor: pointer;
+}
+.trackListRow .trackArtist {
+    cursor: pointer;
 }

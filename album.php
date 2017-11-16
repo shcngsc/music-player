@@ -1,6 +1,6 @@
 <?php
 include("includes/includedFile.php");
-
+include("includes/addSongToPlaylistModal.php");
 if (isset($_GET['id'])) {
     $albumId = $_GET[id];
 }
@@ -32,6 +32,7 @@ $artworkPath = $album->getArtworkPath();
             foreach ($songIdArray as $songId) {
                 $albumSong = new Song($con, $songId);
                 $albumArtist = $albumSong->getArtist();
+                $albumId = $albumSong->getAlbum()->getId();
 
                 echo "<li class='trackListRow'>
                            <div class = 'trackCount'>
@@ -41,9 +42,10 @@ $artworkPath = $album->getArtworkPath();
                             
                             <div class='trackInfo'>
                                 <span class='trackTitle'>" . $albumSong->getTitle() . "</span>
+                                <div class='trackArtist'>" . $albumSong->getArtist()->getName() . "</div>
                             </div>
                             <div class='trackOptions'>
-                                <img onclick='showOptionsMenu(this)' class='optionsButton' src='assets/images/icons/option.png'>
+                                <img onclick='showOptionsMenu(this)' class='optionsButton' data-album='$albumId' data-value='$songId' src='assets/images/icons/option.png'>
                             </div>
                             
                             <div class='trackDuration'>
@@ -62,9 +64,3 @@ $artworkPath = $album->getArtworkPath();
 
 </div>
 
-<nav class="optionsMenu">
-    <input type="hidden" class="songId">
-    <?php echo Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername()); ?>
-    <div class="item">Item 2</div>
-    <div class="item">Item 3</div>
-</nav>

@@ -1,4 +1,6 @@
-<?php include("includes/includedFile.php");
+<?php
+include("includes/includedFile.php");
+include("includes/addSongToPlaylistModal.php");
     if (isset($_GET['id'])) {
         $artistId = $_GET[id];
     }
@@ -27,6 +29,7 @@
         $i = 1;
         foreach ($songIdArray as $songId) {
             $popularSong = new Song($con, $songId);
+            $albumId = $popularSong->getAlbum()->getId();
             echo "<li class='trackListRow'>
                            <div class = 'trackCount'>
                                 <img class='play' src='assets/images/icons/playWhite.png' onclick='setTrack(\"".$popularSong->getId()."\",tempPlaylist,true)'>
@@ -35,9 +38,10 @@
 
                             <div class='trackInfo'>
                                 <span class='trackTitle'>" . $popularSong->getTitle() . "</span>
+                                <div class='trackArtist'>" . $artistName . "</div>
                             </div>
                             <div class='trackOptions'>
-                                <img class='optionsButton' src='assets/images/icons/option.png'>
+                                <img onclick='showOptionsMenu(this)' class='optionsButton' data-album='$albumId' data-value='$songId' src='assets/images/icons/option.png'>
                             </div>
 
                             <div class='trackDuration'>

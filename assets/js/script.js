@@ -7,7 +7,8 @@ var currentIndex = 0;
 var repeatSong = false;
 var shuffle = false;
 var userLoggedIn;
-
+var currentSelectedSong = 0;
+var currentSelectedAlbum = 0;
 function Audio() {
 
     this.audio = document.createElement("audio");
@@ -115,6 +116,8 @@ function deletePlaylist (playlistId) {
 }
 
 function showOptionsMenu(button) {
+    currentSelectedSong = $(button).data("value");
+    currentSelectedAlbum = $(button).data("album");
     var menu = $(".optionsMenu");
     var menuWidth = menu.width();
     //distance from top to top of document
@@ -134,9 +137,72 @@ function hideOptionsMenu() {
     }
 }
 
+function addSongToPlaylist(button) {
+    var playlistId = $(button).data("value");
+    var songId = currentSelectedSong;
+
+    $.post("includes/handlers/ajax/addSongToPlaylist.php",{playlistId: playlistId, songId:songId})
+        .done(function(error) {
+            if(!error)   {
+                hideOptionsMenu();
+            }
+            else{
+                console.log("error:",error);
+            }
+        }
+    );
+}
+
+function deleteSongFromPlaylist(button) {
+    var playlistId = $(button).data("playlist");
+    var songId = currentSelectedSong;
+
+    $.post("includes/handlers/ajax/deleteSongFromPlaylist.php",{playlistId: playlistId, songId:songId})
+        .done(function(error) {
+                if(!error)   {
+                    hideOptionsMenu();
+                    openPage('playlist.php?id='+playlistId);
+                }
+                else{
+                    console.log("error:",error);
+                }
+            }
+        );
+}
+
+function goToAlbum() {
+    openPage('album.php?id='+currentSelectedAlbum);
+}
+
+function logOut() {
+    $.post("includes/handlers/ajax/logOut.php",function () {
+        location.reload();
+    });
+}
+
+function updateEmail() {
+    var email = $("#updateEmail").val();
+    $.post("includes/handlers/ajax/updateEmail.php", {email:email, username:userLoggedIn}, function (response) {
+        $("#emailResponse").text(response).show();
+    });
+}
+
+function resetPassword() {
+    var currentPassword = $("#oldPassword").val();
+    var newPassword = $("#newPassword1").val();
+    var confirmPassword= $("#newPassword2").val();
+
+    $.post("includes/handlers/ajax/resetPassword.php",
+        {currentPassword:currentPassword, newPassword:newPassword, confirmPassword:confirmPassword, username:userLoggedIn},
+        function (response) {
+            console.log(response);
+        });
+}
+
 $(window).scroll(function () {
     hideOptionsMenu();
 });
+
 $(document).click (function (click) {
     var target = $(click.target);
 

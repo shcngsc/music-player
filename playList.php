@@ -6,6 +6,7 @@ if (isset($_GET['id'])) {
 else {
     header("Location:index.php");
 }
+include("includes/deleteSongFromPlaylistModal.php");
 $playlist = new Playlist($con,$playlistId);
 $playlistName = $playlist->getName();
 $playlistOwner = $playlist->getOwner();
@@ -32,6 +33,7 @@ $playlistOwner = $playlist->getOwner();
         foreach ($songIdArray as $songId) {
             $playlistSong = new Song($con, $songId);
             $songArtist = $playlistSong->getArtist()->getName();
+            $albumId = $playlistSong->getAlbum()->getId();
             echo "<li class='trackListRow'>
                            <div class = 'trackCount'>
                                 <img class='play' src='assets/images/icons/playWhite.png' onclick='setTrack(" .$songId. ",tempPlaylist,true)'>
@@ -43,7 +45,7 @@ $playlistOwner = $playlist->getOwner();
                                 <div class='trackArtist'>" . $songArtist . "</div>
                             </div>
                             <div class='trackOptions'>
-                                <img class='optionsButton' src='assets/images/icons/option.png'>
+                                <img onclick='showOptionsMenu(this)' class='optionsButton' data-album='$albumId' data-value='$songId' src='assets/images/icons/option.png'>
                             </div>
                             
                             <div class='trackDuration'>
@@ -56,11 +58,16 @@ $playlistOwner = $playlist->getOwner();
         <script>
             var tempSongIds = '<?php echo json_encode($songIdArray)?>';
             tempPlaylist = JSON.parse(tempSongIds);
-            console.log(tempPlaylist);
         </script>
 
     </ul>
 
 </div>
-
-
+//TODO: CANCEL PROMPT
+<!--<div class="createPlaylistModal">-->
+<!--    <div class="createInputContainer">-->
+<!--        <label for="createInput"> </label>-->
+<!--        <input id="createInput" type="text" placeholder="Please enter the name of the playlist here." required>-->
+<!--        -->
+<!--    </div>-->
+<!--</div>-->

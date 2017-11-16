@@ -44,7 +44,7 @@
         ?>
 
     <div id="background">
-
+    </div>
         <div id="loginContainer">
 
             <div id="inputContainer">
@@ -122,8 +122,6 @@
 
             </div>
         </div>
-    </div>
-
 
 </body>
 </html>

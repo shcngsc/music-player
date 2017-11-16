@@ -5,7 +5,7 @@
  * Date: 12/11/17
  * Time: 21:22
  */
-    include("includes/includedFile.php");
+include("includes/includedFile.php");
 ?>
 <div class="playlistsContainer">
     <div class="gridViewContainer">
@@ -14,10 +14,7 @@
             <button class="greenButton" onclick="createPlaylist()">New Playlist</button>
         </div>
     </div>
-
-
     <?php
-    $username= $userLoggedIn->getUsername();
     $username = $userLoggedIn->getUsername();
     $playlistQuery = mysqli_query($con,"SELECT * FROM Playlists WHERE owner = '$username';");
 

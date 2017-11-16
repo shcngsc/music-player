@@ -6,6 +6,7 @@
  * Time: 12:29
  */
     include("includes/includedFile.php");
+    include("includes/addSongToPlaylistModal.php");
     if (isset($_GET['term'])) {
         $term = urldecode($_GET['term']);
     }
@@ -42,7 +43,7 @@
             <?php
             $Query = mysqli_query($con, "SELECT id FROM Songs WHERE title LIKE '%$term%' ");
             if (mysqli_num_rows($Query) == 0) {
-                echo "<span>No results.</span>";
+                echo "<span class='noResult'>No results.</span>";
             }
             else{
                 $i = 1;
@@ -53,6 +54,7 @@
                     }
                     array_push($songIdArray,$row['id']);
                     $searchSong = new Song($con, $row['id']);
+                    $albumId = $searchSong->getAlbum()->getId();
                     echo "<li class='trackListRow'>
                            <div class = 'trackCount'>
                                 <img class='play' src='assets/images/icons/playWhite.png' onclick='setTrack(\"" . $searchSong->getId() . "\",tempPlaylist,true)'>
@@ -61,9 +63,10 @@
                             
                             <div class='trackInfo'>
                                 <span class='trackTitle'>" . $searchSong->getTitle() . "</span>
+                                <div class='trackArtist'>" . $searchSong->getArtist()->getName() . "</div>
                             </div>
                             <div class='trackOptions'>
-                                <img class='optionsButton' src='assets/images/icons/option.png'>
+                                <img onclick='showOptionsMenu(this)' class='optionsButton' data-album='$albumId' data-value='$songId' src='assets/images/icons/option.png'>
                             </div>
                             
                             <div class='trackDuration'>
@@ -85,11 +88,11 @@
 </div>
 <div class="artistFoundContainer">
     <h2>Artists</h2>
-    <div class="artistFoundGridContianer">
+    <div class="GridViewContianer">
         <?php
         $artistQuery = mysqli_query($con, "SELECT id FROM Artists WHERE name LIKE '%$term%'");
         if (mysqli_num_rows($artistQuery) == 0) {
-            echo "<span>No results.</span>";
+            echo "<span class='noResult'>No results.</span>";
         }
         else{
             while ($row = mysqli_fetch_array($artistQuery)) {
@@ -110,7 +113,9 @@
     <div class="albumFoundItemsContainer">
         <?php
             $albumQuery = mysqli_query($con,"SELECT * FROM Albums WHERE title LIKE '%$term%'");
-
+            if (mysqli_num_rows($albumQuery) == 0 ) {
+                echo "<span class='noResult'>No results.</span>";
+            }
             while($row = mysqli_fetch_array($albumQuery)) {
                 echo "<div class='gridViewItem'>
                             <span onclick=openPage('album.php?id=".$row['id']."')>
