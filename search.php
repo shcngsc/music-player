@@ -32,7 +32,7 @@
             timer = setTimeout(function () {
                 var searchText = $(".searchInput").val();
                 openPage("search.php?term=" + searchText);
-            },2000);
+            },1000);
         });
     });
 </script>

@@ -14,7 +14,7 @@ class Playlist {
 
     public function __construct($con,$data) {
         if (!is_array($data)) {
-            $query = mysqli_query($con, "SELECT * FROM Playlists WHERE id = '$data';");
+            $query = mysqli_query($con, "SELECT * FROM playlists WHERE id = '$data';");
             $data = mysqli_fetch_array($query);
         }
         $this->id = $data['id'];
@@ -36,7 +36,7 @@ class Playlist {
     }
 
     public function getNumOfSongs() {
-        $query = mysqli_query($this->con,"SELECT id FROM PlaylistSongs WHERE playlistId = '$this->id';" );
+        $query = mysqli_query($this->con,"SELECT id FROM playlistSongs WHERE playlistId = '$this->id';" );
         return mysqli_num_rows($query);
     }
     public function getSongIds() {

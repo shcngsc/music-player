@@ -11,7 +11,7 @@ if ( isset($_POST['playlistId']) && isset($_POST['songId']) ) {
     $playlistId = $_POST['playlistId'];
     $songId = $_POST['songId'];
 
-    $orderQuery = mysqli_query($con, "SELECT MAX(playlistOrder)+1 AS playlistOrder FROM PlaylistSongs WHERE playlistId= '$playlistId'; ");
+    $orderQuery = mysqli_query($con, "SELECT MAX(playlistOrder)+1 AS playlistOrder FROM playlistSongs WHERE playlistId= '$playlistId'; ");
 
     $rows = mysqli_fetch_array($orderQuery);
 
@@ -19,7 +19,7 @@ if ( isset($_POST['playlistId']) && isset($_POST['songId']) ) {
     if (!$playlistOrder) {
         $playlistOrder = 1;
     }
-    $query = mysqli_query($con, "INSERT INTO PlaylistSongs VALUES('','$playlistId','$songId','$playlistOrder');");
+    $query = mysqli_query($con, "INSERT INTO playlistSongs VALUES('','$songId','$playlistId','$playlistOrder');");
 }
 else {
     echo "playlistId and songId is not passed in.";

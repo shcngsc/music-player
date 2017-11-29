@@ -10,7 +10,7 @@
     session_start();
     $timezone = date_default_timezone_set("Australia/Brisbane");
 
-    $con = mysqli_connect("localhost", "root", "root","musicPlayer");
+    $con = mysqli_connect("localhost", "root", "root","musicPlayer2");
 
     if (mysqli_connect_errno()) {
         echo "Failed to connect: " . mysqli_connect_errno();

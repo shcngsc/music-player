@@ -18,8 +18,5 @@ include("includes/includedFile.php");
             <button class="blackButton" onclick="openPage('updateUserDetails.php')"> USER DETAILS </button>
             <button class="blackButton" onclick="logOut()"> Log Out </button>
         </div>
-        <div class="userInfo">
-            <h1> <?php echo $userLoggedIn->getFullName(); ?></h1>
-        </div>
     </div>
 </div>

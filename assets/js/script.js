@@ -195,7 +195,7 @@ function resetPassword() {
     $.post("includes/handlers/ajax/resetPassword.php",
         {currentPassword:currentPassword, newPassword:newPassword, confirmPassword:confirmPassword, username:userLoggedIn},
         function (response) {
-            console.log(response);
+        $("#newPasswordResponse").text(response).show();
         });
 }
 
